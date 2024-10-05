@@ -1,0 +1,55 @@
+# ECE 4  Signals, Spectra, Signal Processing   
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+import warnings
+warnings.filterwarnings("ignore")
+
+# Define time range
+t = np.linspace(-10, 10, 1000)
+
+# Signals
+unit_sample = np.where(t == 0, 1, 0)  # Unit sample (impulse)
+unit_step = np.where(t >= 0, 1, 0)    # Unit step signal
+unit_ramp = np.where(t >= 0, t, 0)    # Unit ramp signal
+exp_signal = np.exp(t)                # Exponential signal
+square_wave = signal.square(0.5 * np.pi * t)  # Square wave
+triangular_wave = signal.sawtooth(0.5 * np.pi * t, 0.5)  # Triangular signal
+
+# Plot all signals
+plt.figure(figsize=(10, 8))
+
+# Unit Sample Sequence
+plt.subplot(3, 2, 1)
+plt.stem(t, unit_sample, use_line_collection=True)
+plt.title('1. Unit Sample sequence')
+
+# Unit Step Signal
+plt.subplot(3, 2, 2)
+plt.plot(t, unit_step)
+plt.title('2. Unit Step signal')
+
+# Unit Ramp Signal
+plt.subplot(3, 2, 3)
+plt.plot(t, unit_ramp)
+plt.title('3. Unit Ramp signal')
+
+# Exponential Signal
+plt.subplot(3, 2, 4)
+plt.plot(t, exp_signal)
+plt.title('4. Exponential signal')
+
+# Square Wave Signal
+plt.subplot(3, 2, 5)
+plt.plot(t, square_wave)
+plt.title('5. Square Wave signal')
+
+# Triangular Signal
+plt.subplot(3, 2, 6)
+plt.plot(t, triangular_wave)
+plt.title('6. Triangular signal')
+
+# Show plots
+plt.tight_layout()
+plt.show()
